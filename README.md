@@ -15,10 +15,10 @@
 | birthday   | date   | null: false |
 
 ### Association
-- has_many :goods
+- has_many :items
 - has_many :orders
 
-## goods テーブル
+## items テーブル
 
 | Column       | Type    | Options     |
 | ------------ | ------- | ----------- |
@@ -32,8 +32,8 @@
 | price        | integer | null: false |
 
 ### Association
-- belongs_to :users
-- has_one :addresses
+- belongs_to :user
+- has_one :address
 - has_one :order
 
 ## addresses テーブル
@@ -46,21 +46,23 @@
 | number           | string  | null: false |
 | building         | string  |             |
 | telephone_number | string  | null: false |
+| orders_id        | integer | null: false |
 
 ### Association
-- belongs_to :goods
+- belongs_to :item
+- belongs_to :order
 
 ## orders テーブル
 
 | Column       | Type    | Options     |
 | ------------ | ------- | ----------- |
 | user_id      | integer | null: false |
-| goods_id     | integer | null: false |
-| addresses_id | integer | null: false |
+| items_id     | integer | null: false |
 
 ### Association
-- belongs_to :goods
+- belongs_to :item
 - belongs_to :user
+- has_one :address
 
 # README
 
