@@ -14,12 +14,16 @@
 | lastname2  | string | null: false |
 | birthday   | date   | null: false |
 
+### Association
+- has_many :goods
+- has_many :orders
+
 ## goods テーブル
 
 | Column       | Type    | Options     |
 | ------------ | ------- | ----------- |
-| goods_name   | string  | null: false |
-| goods_info   | text    | null: false |
+| name         | string  | null: false |
+| info         | text    | null: false |
 | category_id  | integer | null: false |
 | condition_id | integer | null: false |
 | cost_id      | integer | null: false |
@@ -27,18 +31,36 @@
 | sendout_id   | integer | null: false |
 | price        | integer | null: false |
 
+### Association
+- belongs_to :users
+- has_one :addresses
+- has_one :order
+
 ## addresses テーブル
 
 | Column           | Type    | Options     |
 | ---------------- | ------- | ----------- |
-| card_info_id     | integer | null: false |
 | postcode         | string  | null: false |
 | prefecture_id    | integer | null: false |
 | city             | string  | null: false |
 | number           | string  | null: false |
-| building         | string  | null: false |
-| telephone_number | integer | null: false |
+| building         | string  |             |
+| telephone_number | string  | null: false |
 
+### Association
+- belongs_to :goods
+
+## orders テーブル
+
+| Column       | Type    | Options     |
+| ------------ | ------- | ----------- |
+| user_id      | integer | null: false |
+| goods_id     | integer | null: false |
+| addresses_id | integer | null: false |
+
+### Association
+- belongs_to :goods
+- belongs_to :user
 
 # README
 
