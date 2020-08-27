@@ -54,10 +54,11 @@
 
 ## orders テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| user_id      | integer | null: false |
-| items_id     | integer | null: false |
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| user_id       | integer | null: false |
+| items_id      | integer | null: false |
+| addressese_id | integer | null: false |
 
 ### Association
 - belongs_to :item
