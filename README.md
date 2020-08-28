@@ -2,17 +2,17 @@
 
 ## users テーブル
 
-| Column     | Type   | Options     |
-| ---------- | ------ | ----------- |
-| user       | string | null: false |
-| email      | string | null: false |
-| password   | string | null: false |
-| nickname   | string | null: false |
-| firstname  | string | null: false |
-| lastname   | string | null: false |
-| firstname2 | string | null: false |
-| lastname2  | string | null: false |
-| birthday   | date   | null: false |
+| Column          | Type   | Options     |
+| --------------- | ------ | ----------- |
+| user            | string | null: false |
+| email           | string | null: false |
+| password        | string | null: false |
+| nickname        | string | null: false |
+| first_name      | string | null: false |
+| last_name       | string | null: false |
+| first_name_kana | string | null: false |
+| last_name_kana  | string | null: false |
+| birthday        | date   | null: false |
 
 ### Association
 - has_many :items
@@ -34,7 +34,7 @@
 ### Association
 - belongs_to :user
 - has_one :address
-- has_one :order
+- has_one :order #もともとorderとのアソシエーションはこちらに記述していますが間違るようでしたら教えて頂きたいです。
 
 ## addresses テーブル
 
@@ -46,24 +46,20 @@
 | number           | string  | null: false |
 | building         | string  |             |
 | telephone_number | string  | null: false |
-| orders_id        | integer | null: false |
 
 ### Association
 - belongs_to :item
-- belongs_to :order
 
 ## orders テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| user_id       | integer | null: false |
-| items_id      | integer | null: false |
-| addressese_id | integer | null: false |
+| Column        | Type    | Options                       |
+| ------------- | ------- | ----------------------------- |
+| user_id       | integer | null: false, foreign_key.true |
+| items_id      | integer | null: false, foreign_key.true |
 
 ### Association
 - belongs_to :item
 - belongs_to :user
-- has_one :address
 
 # README
 
