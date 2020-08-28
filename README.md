@@ -4,7 +4,6 @@
 
 | Column          | Type   | Options     |
 | --------------- | ------ | ----------- |
-| user            | string | null: false |
 | email           | string | null: false |
 | password        | string | null: false |
 | nickname        | string | null: false |
@@ -20,46 +19,48 @@
 
 ## items テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-| name         | string  | null: false |
-| info         | text    | null: false |
-| category_id  | integer | null: false |
-| condition_id | integer | null: false |
-| cost_id      | integer | null: false |
-| area_id      | integer | null: false |
-| sendout_id   | integer | null: false |
-| price        | integer | null: false |
+| Column       | Type    | Options                        |
+| ------------ | ------- | ------------------------------ |
+| name         | string  | null: false                    |
+| info         | text    | null: false                    |
+| category_id  | integer | null: false                    |
+| condition_id | integer | null: false                    |
+| cost_id      | integer | null: false                    |
+| area_id      | integer | null: false                    |
+| sendout_id   | integer | null: false                    |
+| price        | integer | null: false                    |
+| user_id      | integer | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :address
-- has_one :order #もともとorderとのアソシエーションはこちらに記述していますが間違るようでしたら教えて頂きたいです。
+- has_one :order
 
 ## addresses テーブル
 
-| Column           | Type    | Options     |
-| ---------------- | ------- | ----------- |
-| postcode         | string  | null: false |
-| prefecture_id    | integer | null: false |
-| city             | string  | null: false |
-| number           | string  | null: false |
-| building         | string  |             |
-| telephone_number | string  | null: false |
+| Column           | Type     | Options                       |
+| ---------------- | -------- | ----------------------------- |
+| postcode         | string   | null: false                   |
+| prefecture_id    | integer  | null: false                   |
+| city             | string   | null: false                   |
+| number           | string   | null: false                   |
+| building         | string   |                               |
+| telephone_number | string   | null: false                   |
+| order_id         | integer  | null: false, foreign_key:true |
 
 ### Association
-- belongs_to :item
+- belongs_to :order
 
 ## orders テーブル
 
 | Column        | Type    | Options                       |
 | ------------- | ------- | ----------------------------- |
 | user_id       | integer | null: false, foreign_key.true |
-| items_id      | integer | null: false, foreign_key.true |
+| item_id       | integer | null: false, foreign_key.true |
 
 ### Association
 - belongs_to :item
 - belongs_to :user
+- has_one :address
 
 # README
 
