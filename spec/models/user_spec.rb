@@ -57,6 +57,35 @@ RSpec.describe User, type: :model do
           @user.valid?
           expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
         end
+        it 'ユーザー本名は、名字と名前が入力されてなければ登録できない' do
+          @user.first_name = ''
+          @user.last_name = ''
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name can't be blank", "First name は全角で入力してください。", "Last name can't be blank", "Last name は全角で入力してください。")
+        end
+        it 'ユーザー本名は、全角（漢字・ひらがな・カタカナ）でないと登録できない' do
+          @user.first_name = 'abcde'
+          @user.last_name = 'fghij'
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name は全角で入力してください。", "Last name は全角で入力してください。")
+        end
+        it 'ユーザー本名のフリガナは、名字と名前を入力しなければ登録できない' do
+          @user.first_name_kana = ''
+          @user.last_name_kana = ''
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana はカタカナで入力してください。", "Last name kana can't be blank", "Last name kana はカタカナで入力してください。")
+        end
+        it 'ユーザー本名のフリガナは、全角（カタカナ）で入力させる' do
+          @user.first_name_kana = 'あいうえお'
+          @user.last_name_kana = 'かきくけこ'
+          @user.valid?
+          expect(@user.errors.full_messages).to include("First name kana はカタカナで入力してください。", "Last name kana はカタカナで入力してください。")
+        end
+        it '生年月日を入力していないと登録できない' do
+          @user.birthday = ''
+          @user.valid?
+          expect(@user.errors.full_messages).to include("Birthday can't be blank")
+        end
       end
 
     end
