@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
 
-  def index #前回作成
+  def index
+    @items = Item.all.order("created_at DESC")
+  end
+
+  def show
   end
 
   def new
