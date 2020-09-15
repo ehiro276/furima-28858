@@ -5,6 +5,13 @@ class OrdersController < ApplicationController
   end
 
   def create
+
+    Payjp::Charge.create(
+      amount: @item.price,
+      customer: customer_token,
+      currency: 'jpy'
+      )
+
   end
 
 end
