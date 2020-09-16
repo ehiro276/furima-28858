@@ -15,4 +15,6 @@ class UserOrder
     one_order = Order.create(user_id: user_id, item_id: item_id)
     Address.create(postcode: postcode, prefecture_id: prefecture_id, city: city, number: number, building: building, telephone_number: telephone_number, order_id: one_order.id)
   end
+
+  
 end
