@@ -5,7 +5,7 @@ FactoryBot.define do
     city             { '吉田市' }
     number           { '23' }
     building         {  }
-    telephone_number { '080-1234-5678' }
+    telephone_number { '08012345678' }
     card_token       { 'sample' }
     association :user
     association :item
