@@ -7,7 +7,7 @@ class UserOrder
     validates :postcode, format: { with: /\A\d{3}[-]\d{4}\z/}
     validates :prefecture_id, numericality: { other_than: 1 }
     validates :city, :number
-    validates :telephone_number, format: { with: /\A\d{10,11}\z/}
+    validates :telephone_number, format: { with: /\A\d{11}\z/}
     validates :user_id, :item_id, :card_token
   end
 
