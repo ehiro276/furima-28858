@@ -2,10 +2,11 @@ class OrdersController < ApplicationController
   before_action :item_find, only: [:index, :create]
 
   def index
-    @order = UserOrder.new
-    if @item.order.present?
-      unless user_signed_in? && @item.user_id != current_user.id
+    if user_signed_in? && @item.user_id != current_user.id
+      if @item.order.present?
         redirect_to root_path
+      else
+        @order = UserOrder.new
       end
     else
       redirect_to root_path
