@@ -4,7 +4,6 @@ RSpec.describe Item, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   before do
     @item = FactoryBot.build(:item)
-    @item.image = fixture_file_upload('public/images/test_image.png')
   end
 
   describe '商品出品機能のテストコード' do

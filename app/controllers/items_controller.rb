@@ -9,10 +9,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def destroy
-    if @item.destroy
+    if @item.order.present?
+      redirect_to root_path
+    elsif @item.destroy
       redirect_to root_path
     else
       render :edit
